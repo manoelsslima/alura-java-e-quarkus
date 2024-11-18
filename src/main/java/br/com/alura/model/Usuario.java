@@ -1,5 +1,6 @@
 package br.com.alura.model;
 
+import io.quarkus.elytron.security.common.BcryptUtil;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.security.jpa.Password;
 import io.quarkus.security.jpa.Roles;
@@ -68,5 +69,18 @@ public class Usuario extends PanacheEntityBase {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public static void adicionar(Usuario usuario) {
+        usuario.password = BcryptUtil.bcryptHash(usuario.password);
+        usuario.role = validarUsername(usuario.username);
+        usuario.persist();
+    }
+
+    private static String validarUsername(String username) {
+        if (username.equals("alura")) {
+            return "admin";
+        }
+        return "user";
     }
 }

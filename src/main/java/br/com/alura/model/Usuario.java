@@ -1,12 +1,17 @@
 package br.com.alura.model;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import io.quarkus.security.jpa.Password;
+import io.quarkus.security.jpa.Roles;
+import io.quarkus.security.jpa.UserDefinition;
+import io.quarkus.security.jpa.Username;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
+@UserDefinition // diz que essa class que contém as informações de username, password e role
 public class Usuario extends PanacheEntityBase {
 
     @Id
@@ -14,8 +19,12 @@ public class Usuario extends PanacheEntityBase {
     private Long id;
     private String nome;
     private String cpf;
+    @Username
     private String username;
+    @Password
     private String password;
+    @Roles
+    private String role;
 
 //    public Long getId() {
 //        return id;
@@ -55,5 +64,9 @@ public class Usuario extends PanacheEntityBase {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

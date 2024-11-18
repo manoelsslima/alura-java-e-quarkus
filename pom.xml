@@ -45,7 +45,7 @@
         <!-- consumir api rest -->
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-rest-client</artifactId>
+            <artifactId>quarkus-rest-client-jackson</artifactId>
         </dependency>
 
         <!-- fazer o binding do retorno da api para um objeto java -->
@@ -79,6 +79,17 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-security-jpa</artifactId>
+        </dependency>
+
+        <!-- testes -->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-panache-mock</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

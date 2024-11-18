@@ -1,0 +1,3 @@
+Testes de active record é com PanacheMock
+
+Testes de repository é com Mockito

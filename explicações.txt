@@ -1,3 +1,8 @@
 Testes de active record é com PanacheMock
 
 Testes de repository é com Mockito
+
+Quando sobe a aplicação com o docker-compose, os testes dão errado, porque a conexão com o banco
+de dados ainda não existe. Por isso, será necessário subir a aplicação com:
+
+$ mvn clean install -DskipTests

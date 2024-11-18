@@ -1,5 +1,6 @@
 package br.com.alura.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.elytron.security.common.BcryptUtil;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.security.jpa.Password;
@@ -59,6 +60,7 @@ public class Usuario extends PanacheEntityBase {
         this.username = username;
     }
 
+    @JsonIgnore // quando for devolver, ignorar (não exibir) essa propriedade
     public String getPassword() {
         return password;
     }

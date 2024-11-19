@@ -7,23 +7,25 @@ services:
       context: ./
       dockerfile: src/main/docker/Dockerfile.${QUARKUS_MODE:-jvm}
     environment:
-      QUARKUS_DATASOURCE_URL: jdbc:postgresql://postgres-bitcoin:5432/postgres?currentSchema=bitcoin
+      # QUARKUS_DATASOURCE_URL: jdbc:postgresql://bitcoin-postgresql:5432/postgres?currentSchema=bitcoin
+      QUARKUS_DATASOURCE_URL: jdbc:postgresql://bitcoin-postgresql:5432/postgres
     networks:
       - bitcoin-network
     ports:
       - 8080:8080
     depends_on:
-      - postgresql-bitcoin
+      - bitcoin-postgresql
 
-  postgres-bitcoin:
+  bitcoin-postgresql:
     image: postgres:16.3
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
     ports:
-      - 5432:5432
+      - 5433:5432
     volumes:
       - ./opt/docker-data:/var/lib/postgresql/data
+      - ./src/main/resources/script.sql:/docker-entrypoint.initdb.d/script.sql
     networks:
       - bitcoin-network
 
